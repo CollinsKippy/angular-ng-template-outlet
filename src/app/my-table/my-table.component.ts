@@ -13,6 +13,7 @@ import {
 })
 export class MyTableComponent implements OnInit {
   @Input() items: any[];
+  
   @ContentChild('myTableHeadTemplate') myTableHeadTemplate: TemplateRef<any>;
   @ContentChild('myTableBodyTemplate') myTableBodyTemplate: TemplateRef<any>;
 
