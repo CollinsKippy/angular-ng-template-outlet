@@ -1,0 +1,60 @@
+<h1>ngTemplateOutlet</h1>
+
+<h3>List 1</h3>
+<app-my-listing [items]="items">
+  <ng-template #myOutletRef let-boy>
+    <p>{{ boy }}</p>
+  </ng-template>
+</app-my-listing>
+
+<h3>List 2</h3>
+<app-my-listing [items]="items">
+  <ng-template #myOutletRef let-person>
+    <div class="nicer">
+      {{ person }}
+    </div>
+  </ng-template>
+</app-my-listing>
+
+<h3>Table 1</h3>
+<app-my-table [items]="items">
+  <ng-template #myTableHeadTemplate>
+    <th>Name</th>
+  </ng-template>
+  <ng-template #myTableBodyTemplate let-item>
+    <td>{{ item }}</td>
+  </ng-template>
+</app-my-table>
+
+<h3>Table 2</h3>
+<app-my-table [items]="todos">
+  <ng-template #myTableHeadTemplate>
+    <th>Task</th>
+    <th>Is Completed?</th>
+    <th></th>
+  </ng-template>
+  <ng-template
+    #myTableBodyTemplate
+    let-todo
+    let-taskName="taskName"
+    let-isCompleted="isCompleted"
+  >
+    <td>{{ taskName }}</td>
+    <td>{{ isCompleted }}</td>
+    <td>
+      <button *ngIf="!isCompleted" (click)="onUpdate(todo)">Update</button>
+    </td>
+  </ng-template>
+</app-my-table>
+
+<p *ngIf="allTodosCompleted">Congratulations 😄😄. All ToDos Completed!</p>
+
+<h3>Table 3 (Default Body Template)</h3>
+<app-my-table [items]="items">
+  <ng-template #myTableHeadTemplate>
+    <th>Task</th>
+  </ng-template>
+  <ng-template let-name>
+    <td>{{ name }}</td>
+  </ng-template>
+</app-my-table>

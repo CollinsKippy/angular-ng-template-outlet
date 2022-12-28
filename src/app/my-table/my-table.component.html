@@ -1,0 +1,27 @@
+<table>
+  <thead>
+    <tr>
+      <ng-container [ngTemplateOutlet]="myTableHeadTemplate"></ng-container>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <ng-container
+        [ngTemplateOutlet]="myTableBodyTemplate || defaultTableBody"
+        [ngTemplateOutletContext]="{
+          $implicit: item,
+          taskName: item.name,
+          isCompleted: item.isCompleted
+        }"
+      ></ng-container>
+    </tr>
+    <!-- NB: Context Information: The item(s) will be accessed in let-* e.g. let-taskName, let-isCompleted -->
+  </tbody>
+</table>
+
+<!-- Default Template -->
+<ng-template #defaultTableBody let-item>
+  <td class="item">
+    {{ item }}
+  </td>
+</ng-template>
